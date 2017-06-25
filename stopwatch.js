@@ -60,6 +60,8 @@ function stopwatchLap(event){
 function stopwatchReset(event){
   event.preventDefault();
   console.log("time to reset");
+  rawTime = 0;
+  stopwatchTime.innerHTML = formatTime(rawTime)
 }
 
 // adds a leading zero because humans like them
