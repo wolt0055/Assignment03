@@ -19,6 +19,7 @@ const intervalRate = 10 //update stopwatch every 10 ms
 //values that will change pretty often
 let intervalId = null //create variable that has no value right now..
 let rawTime = 0
+let lapTime = null
 
 // turns the time into a human readable format
 function formatTime (raw) {
@@ -53,9 +54,17 @@ function stopwatchStop (event) {
   clearInterval(intervalId) //how this work?
 }
 
-function stopwatchLap(event){
-  event.preventDefault();
+//lap function needs to record the current time into an array, and update DOM with
+//list showing all of the recorded lap times
+function stopwatchLap(){
+  // event.preventDefault();
   console.log("lap time!");
+
+  //throw current time into an array
+  lapTime = formatTime(rawTime);
+  // console.log(lapTime);
+  laps.push(lapTime)
+  // lapList.innerHTML = formatTime(rawTime)
 }
 function stopwatchReset(event){
   event.preventDefault();
