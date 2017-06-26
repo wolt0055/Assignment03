@@ -65,12 +65,16 @@ function stopwatchLap(){
   // console.log(lapTime);
   laps.push(lapTime)
   // lapList.innerHTML = formatTime(rawTime)
+  drawList();
 }
 function stopwatchReset(event){
   event.preventDefault();
   console.log("time to reset");
   rawTime = 0;
   stopwatchTime.innerHTML = formatTime(rawTime)
+  laps.length = 0;
+  drawList();
+
 }
 
 // adds a leading zero because humans like them
@@ -95,6 +99,22 @@ document.addEventListener("DOMContentLoaded", function () {
   lap.addEventListener("click", stopwatchLap)
   reset.addEventListener("click", stopwatchReset)
 })
+
+function drawList(){
+  event.preventDefault();
+  //identify the parent id within the DOM and clear contents
+  var parent = document.getElementById('lapList')
+  parent.innerHTML = ""
+  //for each lap time, add the time to a list element and append to lapList unordered list
+  for(let i = 0; i< laps.length; i++){
+    let li = document.createElement('li')
+    let count = i + 1
+    li.innerHTML = "lap time: " + laps[i]
+    parent.appendChild(li)
+  }
+
+
+}
 
 // domcontent loaded and window.onload
 // domcontentloaded happens first, has been read by browser and translated
